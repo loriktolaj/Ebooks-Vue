@@ -8,6 +8,8 @@
     <router-view />
   </div>
 </template>
+test 
+test
 -->
 <template>
   <div id="app">
