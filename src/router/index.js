@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/client/Home.vue";
-import Books from "../views/client/Books.vue";
-import Login from "../views/client/Login.vue";
-import Register from "../views/client/Register.vue";
+import Home from "@/components/Home/Home.vue";
+import Books from "@/components/Books/Books.vue";
+import Login from "@/components/Login/Login.vue";
+import Register from "@/components/Register/Register.vue";
 
 Vue.use(VueRouter);
 
@@ -11,7 +11,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
   },
   {
     path: "/books",
@@ -21,13 +21,13 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: Login
+    component: Login,
   },
   {
     path: "/register",
     name: "Register",
-    component: Register
-  }
+    component: Register,
+  },
 ];
 
 const router = new VueRouter({
