@@ -5,8 +5,12 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
 .center {
   height: 100vh;
-  width: 100%;
   background: white;
+}
+
+.table {
+  margin-top: 30px;
 }

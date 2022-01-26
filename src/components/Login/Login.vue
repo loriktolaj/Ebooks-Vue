@@ -22,7 +22,7 @@
     </div>
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
   @import 'Login.css';
 </style>
 

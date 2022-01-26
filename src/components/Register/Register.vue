@@ -31,7 +31,7 @@
     </div>
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
   @import 'Register.css';
 </style>
 
