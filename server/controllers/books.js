@@ -4,8 +4,6 @@ export const getBooks = async (req, res) => {
     try {
         const books = await Book.find();
 
-        console.log(books);
-
         res.status(200).json(books);
     } catch(error) {
         res.status(404).json({message: error.message});
@@ -14,7 +12,7 @@ export const getBooks = async (req, res) => {
 
 export const createBook = async (req, res) => {
     const body = req.body;
-
+    console.log(req.body);
     const newBook = new Book(body);
 
     try {

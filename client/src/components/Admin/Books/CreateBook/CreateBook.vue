@@ -3,9 +3,8 @@
     <p class="my-4">Hello from books!</p>
 
     <form v-on:submit="onSubmit">
-      <input type="text" name="name" placeholder="Name" />
-      <input type="email" name="email" placeholder="Email" />
-      <input type="number" name="age" placeholder="Age" />
+      <input type="text" name="title" placeholder="Title" />
+      <input type="text" name="author" placeholder="Author" />
       <input type="number" name="credits" placeholder="Credits" />
       <button type="submit" class="btn btn-info">Add</button>
     </form>
@@ -28,11 +27,20 @@ export default {
   methods: {
     onSubmit: function (e) {
       e.preventDefault();
-      const name = e.target[0].value;
-      const email = e.target[1].value;
-      const age = e.target[2].value;
-      const credits = e.target[3].value;
-      console.log(name, email, email, age, credits);
+      const title = e.target[0].value;
+      const author = e.target[1].value;
+      const credits = e.target[2].value;
+
+      console.log(title, author, credits);
+      
+      fetch('http://localhost:5000/books', {
+        method: 'POST',
+        body: JSON.stringify({title, author, credits}),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .catch(err => console.log(err));
     },
   },
   components: {},
