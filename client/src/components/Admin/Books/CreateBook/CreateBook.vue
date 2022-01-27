@@ -1,12 +1,10 @@
 <template>
   <div class="center">
-    <p class="my-4">Hello from books!</p>
-
     <form v-on:submit="onSubmit">
       <input type="text" name="title" placeholder="Title" />
       <input type="text" name="author" placeholder="Author" />
       <input type="number" name="credits" placeholder="Credits" />
-      <button type="submit" class="btn btn-info">Add</button>
+      <button type="submit" class="btn btn-primary">Add</button>
     </form>
   </div>
 </template>
@@ -40,6 +38,7 @@ export default {
           'Content-Type': 'application/json'
         }
       })
+      .then(() => this.$router.push('/admin/books'))
       .catch(err => console.log(err));
     },
   },

@@ -1,13 +1,10 @@
 <template>
   <div class="center">
-    <p class="my-4">Hello from users edit!</p>
-
     <form v-on:submit="onSubmit">
-      <input type="text" name="name" placeholder="Name" />
-      <input type="email" name="email" placeholder="Email" />
-      <input type="number" name="age" placeholder="Age" />
-      <input type="number" name="credits" placeholder="Credits" />
-      <button type="submit" class="btn btn-info">Add</button>
+      <input type="email" name="email" placeholder="Email" :value="user.email" />
+      <input type="password" name="password" placeholder="password" :value="user.password" />
+      <input type="number" name="credits" placeholder="Credits" :value="user.credits" />
+      <button type="submit" class="btn btn-info">Edit</button>
     </form>
   </div>
 </template>
@@ -22,18 +19,38 @@ export default {
   props: {},
   data() {
     return {
-      username: "",
+      user: {
+        email: "",
+        title: "",
+        credits: 0
+      }
     };
   },
   methods: {
     onSubmit: function (e) {
       e.preventDefault();
-      const name = e.target[0].value;
-      const email = e.target[1].value;
-      const age = e.target[2].value;
-      const credits = e.target[3].value;
-      console.log(name, email, email, age, credits);
+
+      const email = e.target[0].value;
+      const password = e.target[1].value;
+      const credits = e.target[2].value;
+
+      fetch(`http://localhost:5000/users/${this.user._id}`, {
+        method: "PUT",
+        body: JSON.stringify({ email, password, credits }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(() => this.$router.push("/admin/users"))
+        .catch((err) => console.log(err));
     },
+  },
+  created() {
+    const id = this.$route.params.id;
+
+    fetch(`http://localhost:5000/users/${id}`)
+      .then((response) => response.json())
+      .then((user) => this.user = user);
   },
   components: {},
 };

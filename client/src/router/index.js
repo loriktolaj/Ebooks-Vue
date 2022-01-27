@@ -10,8 +10,10 @@ import AdminBooks from "@/components/Admin/Books/Books.vue";
 import Users from "@/components/Admin/Users/Users.vue";
 import EditUser from "@/components/Admin/Users/EditUser/EditUser.vue";
 import CreateUser from "@/components/Admin/Users/CreateUser/CreateUser.vue";
+import DeleteUser from "@/components/Admin/Users/DeleteUser/DeleteUser.vue";
 import CreateBook from "@/components/Admin/Books/CreateBook/CreateBook.vue";
 import EditBook from "@/components/Admin/Books/EditBook/EditBook.vue";
+import DeleteBook from "@/components/Admin/Books/DeleteBook/DeleteBook.vue";
 
 Vue.use(VueRouter);
 
@@ -52,9 +54,14 @@ const routes = [
     component: CreateBook,
   },
   {
-    path: "/admin/books/editbook",
+    path: "/admin/books/editbook/:id",
     name: "EditBook",
     component: EditBook,
+  },
+  {
+    path: "/admin/books/deletebook/:id",
+    name: "DeleteBook",
+    component: DeleteBook,
   },
   {
     path: "/admin/users",
@@ -67,9 +74,14 @@ const routes = [
     component: CreateUser,
   },
   {
-    path: "/admin/users/edituser",
+    path: "/admin/users/edituser/:id",
     name: "EditUser",
     component: EditUser,
+  },
+  {
+    path: "/admin/users/deleteuser/:id",
+    name: "DeleteUser",
+    component: DeleteUser,
   },
 ];
 

@@ -3,7 +3,8 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import postRoutes from "./routes/books.js";
+import booksRoutes from "./routes/books.js";
+import usersRoutes from "./routes/users.js";
 
 const app = express();
 app.use(cors());
@@ -11,7 +12,8 @@ app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/books', postRoutes);
+app.use('/books', booksRoutes);
+app.use('/users', usersRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://dev:dev@cluster0.v3vwf.mongodb.net/ebooks';
 const PORT = process.env.PORT || 5000;
