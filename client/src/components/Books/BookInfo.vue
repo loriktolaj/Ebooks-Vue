@@ -1,0 +1,86 @@
+<template>
+        <div class="bookCard">
+            <div class="title">{{book.title}}</div>
+            <div class="cardInfo">
+                
+                <div class="image"></div>
+                
+                <div class="author">{{book.author}}</div>
+                <div class="price">{{book.credits}}$</div>
+            </div>
+            <a href="/#/books">Return</a>
+        </div>
+</template>
+
+<script>
+export default {
+    name: "BookInfo",
+    props: {},
+    components: {},
+    data: function () {
+        return {
+        book: {
+            title:"",
+            author:"",
+            description:"",
+            credits:0
+        },
+        };
+    },
+    created() {
+        const id = this.$route.params.id;
+        fetch(`http://localhost:5000/books/${id}`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => this.book = data);
+    },
+}
+</script>
+
+<style scoped>
+    .container {
+        margin-top: 30px;
+    }
+    .bookCard{
+        
+        display: flex;
+        flex-direction: column;
+        margin: 15px;
+        border: 1px solid black;
+        justify-content: center;
+        text-decoration: none;
+    }
+    /* .bookCard:hover {
+        transition: 500ms;
+        transform: scale(1.05, 1.05);
+    } */
+    .cardInfo{
+        margin: 20px;
+        border: 1px solid black;
+        display: flex;
+    }
+    .title {
+        font-size: 30px;
+        color: black;
+    }
+    .image {
+        margin: 10px 50px 10px 10px;
+        width: 300px;
+        height: 300px;
+        background-color: burlywood;
+    }
+    .author{
+        margin: 30px;
+        padding: 10px;
+         border: 1px solid black;
+         color: rgb(87, 87, 87);
+        font-size: 40px;
+    }
+    .price{
+        margin: 30px;
+        padding: 10px;
+        border: 1px solid black;
+        font-size: 30px;
+    }
+</style>

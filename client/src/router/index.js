@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/components/Home/Home.vue";
-import Books from "@/components/Books/Books.vue";
+import Books from "@/views/Client/Books.vue";
 import Login from "@/components/Login/Login.vue";
+import BookInfo from "@/components/Books/BookInfo.vue";
 import Register from "@/components/Register/Register.vue";
 
 import Dashboard from "@/components/Admin/Dashboard/Dashboard.vue";
@@ -27,6 +28,11 @@ const routes = [
     path: "/books",
     name: "Books",
     component: Books
+  },
+  {
+    path: "/Books/info/:id",
+    name: "BookInfo",
+    component: BookInfo,
   },
   {
     path: "/login",
