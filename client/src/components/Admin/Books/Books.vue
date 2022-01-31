@@ -4,45 +4,6 @@
       >Create a Book</router-link
     >
 
-    <!-- <b-table-simple hover small caption-top responsive>
-      <colgroup>
-        <col />
-        <col />
-      </colgroup>
-      <colgroup>
-        <col />
-        <col />
-        <col />
-      </colgroup>
-      <colgroup>
-        <col />
-        <col />
-      </colgroup>
-      <b-thead head-variant="dark">
-        <b-tr>
-          <b-th>Title</b-th>
-          <b-th>Author</b-th>
-          <b-th>Credits</b-th>
-        </b-tr>
-      </b-thead>
-      <b-tbody>
-        <b-tr :key="book.id" v-for="book in books">
-          <b-td>{{ book.title }}</b-td>
-          <b-td>{{ book.author }}</b-td>
-          <b-td>{{ book.credits }}</b-td>
-          <b-td>
-             <router-link v-bind:to="'/admin/books/editbook/' + book._id" class="link"
-              >Edit</router-link
-            >
-             <router-link v-bind:to="'/admin/books/deletebook/' + book._id" class="delete"
-              >Delete</router-link
-            >
-          </b-td>
-        </b-tr>
-      </b-tbody>
-    </b-table-simple> -->
-
-
     <table class="table">
       <thead>
         <tr>
@@ -67,7 +28,7 @@
   </div>
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
 @import "Books.css";
 </style>
 

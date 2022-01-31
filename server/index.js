@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from "dotenv";
 
+import dashboardRoutes from "./routes/dashboard.js";
 import booksRoutes from "./routes/books.js";
 import usersRoutes from "./routes/users.js";
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/dashboard', dashboardRoutes);
 app.use('/books', booksRoutes);
 app.use('/users', usersRoutes);
 
