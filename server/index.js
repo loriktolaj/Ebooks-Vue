@@ -2,9 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from "dotenv";
 
 import booksRoutes from "./routes/books.js";
 import usersRoutes from "./routes/users.js";
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -15,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/books', booksRoutes);
 app.use('/users', usersRoutes);
 
-const CONNECTION_URL = 'mongodb+srv://dev:dev@cluster0.v3vwf.mongodb.net/ebooks';
+const CONNECTION_URL = process.env.DATABASE_URL;
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true })
