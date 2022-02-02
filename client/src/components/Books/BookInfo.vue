@@ -2,13 +2,13 @@
         <div class="bookCard">
             <div class="title">{{book.title}}</div>
             <div class="cardInfo">
-                
                 <div class="image"></div>
-                
                 <div class="author">{{book.author}}</div>
                 <div class="price">{{book.credits}}$</div>
             </div>
-            <a href="/#/books">Return</a>
+            <div class="backBtn">
+                <a href="/#/books">Return</a>
+            </div>    
         </div>
 </template>
 
@@ -43,7 +43,7 @@ export default {
         margin-top: 30px;
     }
     .bookCard{
-        
+        padding: 20px 0;
         display: flex;
         flex-direction: column;
         margin: 15px;
@@ -82,5 +82,22 @@ export default {
         padding: 10px;
         border: 1px solid black;
         font-size: 30px;
+    }
+    .backBtn{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .backBtn a{
+        text-decoration: none;
+        width: 100px;
+        height: 40px;
+        background-color: #0f0f0f;
+        color: #dddddd;
+        border-radius: 5px;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
     }
 </style>

@@ -1,5 +1,8 @@
 <template>
-    <div class="container">
+    <div class="noBooksAlert" v-if="books.length === 0">
+        <h1>No books</h1>
+    </div>
+    <div class="container" v-else>
         <router-link v-bind:to="'/books/info/' + book._id" :key="book.id" v-for="book in books"  class="bookCard">
             <div class="cardInfo">
                 <div class="image"></div>
@@ -8,9 +11,9 @@
                 <div class="price">{{book.credits}}$</div>
             </div>
         </router-link>
-        
     </div>
 </template>
+
 
 <script>
 export default {
@@ -21,7 +24,7 @@ export default {
         return {
         books: [],
         };
-    },
+    }, 
     created() {
         fetch("http://localhost:5000/books")
         .then((response) => {
@@ -33,6 +36,17 @@ export default {
 </script>
 
 <style scoped>
+    .noBooksAlert{
+        width: 300px;
+        height: 100px;
+        border: 0.5px solid black;
+        color: rgb(4, 27, 27);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -150px;
+    }
     .container {
         display: flex;
         margin-top: 30px;
