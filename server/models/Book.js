@@ -1,8 +1,9 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const bookSchema = mongoose.Schema({
     title: String,
     author: String,
+    image: String,
     credits: {
         type: Number,
         default: 0
@@ -15,4 +16,4 @@ const bookSchema = mongoose.Schema({
 
 const Book = mongoose.model("Book", bookSchema);
 
-export default Book;
+module.exports = Book;

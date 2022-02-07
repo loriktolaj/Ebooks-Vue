@@ -1,9 +1,9 @@
-import bcrypt from 'bcryptjs';
-import jwt  from 'jsonwebtoken';
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 // import passport from 'passport';
-import User from "../models/User.js";
+const User = require('../models/User');
 
-export const getUsers = async (req, res) => {
+exports.getUsers = async (req, res) => {
     try {
         const users = await User.find();
 
@@ -13,7 +13,7 @@ export const getUsers = async (req, res) => {
     }
 }
 
-export const getUser = async (req, res) => {
+exports.getUser = async (req, res) => {
     try {
         const id = req.params.id;
         const user = await User.findOne({_id: id});
@@ -24,7 +24,7 @@ export const getUser = async (req, res) => {
     }
 }
 
-export const editUser = async (req, res) => {
+exports.editUser = async (req, res) => {
     try {
         const id = req.params.id;
         const body = req.body;
@@ -34,27 +34,49 @@ export const editUser = async (req, res) => {
         user.password = body.password;
         user.credits = body.credits;
 
-        await user.save();
-        res.status(200).json({msg: 'success'});
+        if(body.password.includes('$2a$') && body.password.length === 60) {
+            user.password = body.password;
+
+            await user.save();
+            
+            res.status(200).json({msg: 'success'});
+        } else {
+            bcrypt.hash(req.body.password, 10, function(err, hash) {
+                user.password = hash;
+
+                user.save().then(() => {
+                    res.status(200).json({msg: 'success'});
+                });
+            });
+        }
     } catch(error) {
         res.status(404).json({message: error.message});
     }
 }
 
-export const postAddUser = async (req, res) => {
+exports.postAddUser = async (req, res) => {
     const body = req.body;
-    const newUser = new User(body);
+    const newUser = new User();
+
+    newUser.name = body.name;
+    newUser.email = body.email;
+    newUser.age = body.age;
+    newUser.credits = body.credits;
 
     try {
-        await newUser.save();
+        bcrypt.hash(req.body.password, 10, function(err, hash) {
+            newUser.password = hash;
 
-        res.status(201).json(newUser);
+            newUser.save().then(() => {
+                res.status(201).json(newUser);
+            });
+        });
     } catch(error) {
         res.status(409).json({message: error.message});
     }
 }
 
-export const deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res) => {
     try {
         const id = req.params.id;
         const user = await User.deleteOne({_id: id});
@@ -67,7 +89,7 @@ export const deleteUser = async (req, res) => {
 
 // User Register
 
-export const register = async (req, res) => {
+exports.register = async (req, res) => {
     let {
         username,
         email,
@@ -114,7 +136,7 @@ export const register = async (req, res) => {
 
     // User Login
 
-export const login = async (req, res) => {
+exports.login = async (req, res) => {
     User.findOne({ username: req.body.username }).then(user => {
         if(!user){
             return res.status(404).json({

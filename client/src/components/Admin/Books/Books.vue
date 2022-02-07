@@ -10,6 +10,7 @@
           <th scope="col">Title</th>
           <th scope="col">Author</th>
           <th scope="col">Credits</th>
+          <th scope="col">Image</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -18,6 +19,9 @@
           <th scope="row">{{book.title}}</th>
           <td>{{book.author}}</td>
           <td>{{book.credits}}</td>
+          <td>
+            <img v-bind:src="'http://localhost:5000/images/' + book.image" style="width: 80px"/>
+          </td>
           <td>
             <router-link v-bind:to="'/admin/books/editbook/' + book._id" class="link">Edit</router-link>
             <router-link v-bind:to="'/admin/books/deletebook/' + book._id" class="delete">Delete</router-link>

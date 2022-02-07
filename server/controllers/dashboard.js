@@ -1,7 +1,8 @@
-import User from "../models/User.js";
-import Book from "../models/Book.js";
+// import User from "../models/User.js";
+const User = require('../models/User');
+const Book = require('../models/Book');
 
-export const getDashboard = async (req, res, next) => {
+exports.getDashboard = async (req, res, next) => {
     try {
         const totalUsers = await User.find().countDocuments();
         const totalBooks = await Book.find().countDocuments();

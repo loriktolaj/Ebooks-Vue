@@ -1,17 +1,30 @@
-import express from 'express';
-
+// import express from 'express';
+const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 
-import { getBooks, getBook, createBook, editBook, deleteBook } from "../controllers/books.js";
+// import { getBooks, getBook, createBook, editBook, deleteBook } from "../controllers/books.js";
+const booksController = require('../controllers/books');
 
-router.get("/", getBooks);
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+});
 
-router.get("/:id", getBook);
+const upload = multer({ dest: 'images', storage: fileStorage })
 
-router.post("/", createBook);
+router.get("/", booksController.getBooks);
 
-router.put("/:id", editBook);
+router.get("/:id", booksController.getBook);
 
-router.delete("/:id", deleteBook);
+router.post("/", upload.single('image'), booksController.createBook);
 
-export default router;
+router.put("/:id", upload.single('image'), booksController.editBook);
+
+router.delete("/:id", booksController.deleteBook);
+
+module.exports = router;

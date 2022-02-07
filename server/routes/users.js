@@ -1,24 +1,23 @@
-import express from 'express';
-
-
+// import express from 'express';
+const express = require('express');
 
 const router = express.Router();
 
-import { getUsers, getUser, editUser, postAddUser, deleteUser, login, register} from '../controllers/users.js';
+const usersControllers = require('../controllers/users');
 
-router.get('/', getUsers);
+router.get('/', usersControllers.getUsers);
 
-router.get('/:id', getUser);
+router.get('/:id', usersControllers.getUser);
 
-router.post('/', postAddUser);
+router.post('/', usersControllers.postAddUser);
 
-router.put("/:id", editUser);
+router.put("/:id", usersControllers.editUser);
 
-router.delete("/:id", deleteUser);
+router.delete("/:id", usersControllers.deleteUser);
 
-router.post('/login', login);
+router.post('/login', usersControllers.login);
 
-router.post('/register', register);
+router.post('/register', usersControllers.register);
 
 
 // // Return User's data
@@ -29,4 +28,4 @@ router.post('/register', register);
 //         user: req.user
 //     });
 // });
-export default router;
+module.exports = router;

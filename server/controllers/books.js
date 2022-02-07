@@ -1,6 +1,7 @@
-import Book from "../models/Book.js";
+// import Book from "../models/Book.js";
+const Book = require('../models/Book');
 
-export const getBooks = async (req, res) => {
+exports.getBooks = async (req, res) => {
     try {
         const books = await Book.find();
 
@@ -10,7 +11,7 @@ export const getBooks = async (req, res) => {
     }
 }
 
-export const getBook = async (req, res) => {
+exports.getBook = async (req, res) => {
     try {
         const id = req.params.id;
         const book = await Book.findOne({_id: id});
@@ -21,7 +22,7 @@ export const getBook = async (req, res) => {
     }
 }
 
-export const editBook = async (req, res) => {
+exports.editBook = async (req, res) => {
     try {
         const id = req.params.id;
         const body = req.body;
@@ -30,6 +31,7 @@ export const editBook = async (req, res) => {
         book.title = body.title;
         book.author = body.author;
         book.credits = body.credits;
+        book.image = req.file.originalname;
 
         await book.save()
         res.status(200).json({msg: 'success'});;
@@ -38,10 +40,15 @@ export const editBook = async (req, res) => {
     }
 }
 
-export const createBook = async (req, res) => {
+exports.createBook = async (req, res) => {
     const body = req.body;
-    console.log(req.body);
-    const newBook = new Book(body);
+    console.log(req.file, req.body);
+    const newBook = new Book();
+
+    newBook.title = body.title;
+    newBook.author = body.author;
+    newBook.image = req.file.originalname;
+    newBook.credits = body.credits;
 
     try {
         await newBook.save();
@@ -52,7 +59,7 @@ export const createBook = async (req, res) => {
     }
 }
 
-export const deleteBook = async (req, res) => {
+exports.deleteBook = async (req, res) => {
     try {
         const id = req.params.id;
         const book = await Book.deleteOne({_id: id});
