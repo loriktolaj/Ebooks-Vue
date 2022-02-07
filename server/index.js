@@ -10,6 +10,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const multer = require('multer');
 const path = require('path');
+const passport = require('passport');
 
 const dashboardRoutes = require("./routes/dashboard.js");
 const booksRoutes = require("./routes/books.js");
@@ -29,9 +30,12 @@ const fileStorage = multer.diskStorage({
     }
 });
 
+app.use(passport.initialize());
+require('./config/passport')(passport);
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 app.use('/dashboard', dashboardRoutes);
 app.use('/books', booksRoutes);
