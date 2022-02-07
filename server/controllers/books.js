@@ -31,7 +31,7 @@ exports.editBook = async (req, res) => {
         book.title = body.title;
         book.author = body.author;
         book.credits = body.credits;
-        book.image = req.file.originalname;
+        book.image = req.file.originalname || book.image;
 
         await book.save()
         res.status(200).json({msg: 'success'});;
