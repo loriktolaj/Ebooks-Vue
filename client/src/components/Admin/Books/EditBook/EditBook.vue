@@ -3,7 +3,9 @@
     <form v-on:submit="onSubmit" enctype="multipart/form-data">
       <input type="text" name="title" placeholder="Title" :value="user.title" />
       <input type="text" name="author" placeholder="Author" :value="user.author" />
-      <input type="file" name="image" />
+      <input type="file" name="image" @change="handleImg" />
+      <img v-if="url" :src="url" style="width: 500px"/>
+      <img v-if="user.image" v-bind:src="'http://localhost:5000/images/' + user.image" style="width: 500px"/>
       <input type="number" name="credits" placeholder="Credits" :value="user.credits" />
       <button type="submit" class="btn btn-info">Edit</button>
     </form>
@@ -22,9 +24,11 @@ export default {
     return {
       user: {
         title: "",
-        auhtor: "",
-        credits: 0
-      }
+        author: "",
+        credits: 0,
+        image: null
+      },
+      url: null
     };
   },
   methods: {
@@ -50,6 +54,12 @@ export default {
       .then(() => this.$router.push('/admin/books'))
       .catch(err => console.log(err))
     },
+    handleImg: function (e) {
+      const file = e.target.files[0];
+      this.user.image = null;
+      this.url = URL.createObjectURL(file);
+      URL.revokeObjectURL(file);
+    }
   },
   created() {
     const id = this.$route.params.id;
@@ -58,7 +68,6 @@ export default {
       .then(response => response.json())
       .then(user => {
         this.user = user
-        console.log(this.user);
       });
   },
   components: {},

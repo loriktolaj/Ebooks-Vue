@@ -3,7 +3,8 @@
     <form v-on:submit="onSubmit" enctype="multipart/form-data">
       <input type="text" name="title" placeholder="Title" />
       <input type="text" name="author" placeholder="Author" />
-      <input type="file" name="image" placeholder="Image" />
+      <input type="file" name="image" @change="handleImg" />
+      <img v-if="url" :src="url" style="width: 500px"/>
       <input type="number" name="credits" placeholder="Credits" />
       <button type="submit" class="btn btn-primary">Add</button>
     </form>
@@ -11,7 +12,7 @@
 </template>
 
 <style lang="css">
-@import "CreateBook.css";
+  @import "CreateBook.css";
 </style>
 
 <script>
@@ -21,6 +22,7 @@ export default {
   data() {
     return {
       username: "",
+      url: null
     };
   },
   methods: {
@@ -47,6 +49,11 @@ export default {
       })
       .then(() => this.$router.push('/admin/books'))
       .catch(err => console.log(err));
+    },
+    handleImg: function (e) {
+      const file = e.target.files[0];
+      this.url = URL.createObjectURL(file);
+      URL.revokeObjectURL(file);
     }
   },
   components: {},

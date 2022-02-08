@@ -21,15 +21,6 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'images');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    }
-});
-
 app.use(passport.initialize());
 require('./config/passport')(passport);
 app.use(bodyParser.json({ extended: true }));
