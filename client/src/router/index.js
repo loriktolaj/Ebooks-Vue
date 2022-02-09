@@ -15,6 +15,8 @@ import DeleteUser from "@/components/Admin/Users/DeleteUser/DeleteUser.vue";
 import CreateBook from "@/components/Admin/Books/CreateBook/CreateBook.vue";
 import EditBook from "@/components/Admin/Books/EditBook/EditBook.vue";
 import DeleteBook from "@/components/Admin/Books/DeleteBook/DeleteBook.vue";
+import Profile from "@/views/Client/Profile.vue";
+import store from '@/store';
 
 Vue.use(VueRouter);
 
@@ -38,11 +40,25 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+    meta:{
+      requiresGuest: true
+    }
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
+    meta:{
+      requiresGuest: true
+    }
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: Profile,
+    meta:{
+      requiresGuest: false
+    }
   },
   {
     path: "/admin",
@@ -94,5 +110,23 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
+
+router.beforeEach((to, from, next) =>{
+  if(to.matched.some(record => record.meta.requresAuth)){
+    if(!store.getters.isLoggedIn){
+      next('/login');
+    }else {
+      next();
+    }
+  } else if(to.matched.some(record => record.meta.requiresGuest)){
+    if(store.getters.isLoggedIn){
+      next('/profile');
+    }else {
+      next();
+    }
+  } else {
+    next();
+  }
+})
 
 export default router;

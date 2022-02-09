@@ -3,18 +3,25 @@
     <div id="nav">
       <Navbar />
     </div>
+    <Errors v-if="error" :msg="error" />
     <router-view />
+    
   </div>
 </template>
 
 <script> 
-// import Navbar from "@/views/Client/Navbar.vue";
-import Navbar from "@/views/Admin/Navbar.vue";
-
+import { mapGetters } from "vuex";
+import Navbar from "@/views/Client/Navbar.vue";
+// import Navbar from "@/views/Admin/Navbar.vue";
+import Errors from  "@/components/Errors.vue";
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
+    Errors
+  },
+  computed: {
+    ...mapGetters(['error'])
   }
 };
   

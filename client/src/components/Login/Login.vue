@@ -2,15 +2,15 @@
     <div class="center">
         <div class="container_register">
             <div class="text">Welcome back to eBooks</div><br/>
-            <form action="#" className="form">
+            <form @submit.prevent="loginUser" action="#" className="form">
                 <div class="data">
-                    <label>Email</label>
-                    <input type="text" name="email"/> 
+                    <label for="username">Username</label>
+                    <input id="username" type="text" placeholder="Username" name="username" v-model="username"/> 
                 </div>
                 
                 <div class="data">
-                    <label>Password</label>
-                    <input type="text" name="password"/> 
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="Password" name="password" v-model="password"/> 
                 </div>
                 <div class="btn">
                     <div class="inner"></div>
@@ -27,9 +27,34 @@
 </style>
 
 <script>
+import { mapActions } from 'vuex';
  export default {
     name: "Login",
     props: {
+    },
+    data(){
+        return {
+            username:"",
+            password:""
+        }
+    },
+    methods: {
+    ...mapActions(["login"]),
+    loginUser() {
+      let user = {
+        username: this.username,
+        password: this.password
+      };
+      this.login(user)
+        .then(res => {
+          if (res.data.success) {
+            this.$router.push("/Profile");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+  }
  };
 </script>

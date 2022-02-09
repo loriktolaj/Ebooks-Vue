@@ -10,11 +10,28 @@
             <div class="navbar-nav mr-auto">
               <router-link to="/" class="nav-item nav-link">Home</router-link>
               <router-link to="/books" class="nav-item nav-link">Books</router-link>
-              <router-link to="/login" class="nav-item nav-link">Login</router-link>
-              <router-link to="/registe22r" class="nav-item nav-link">Register</router-link>
+              <router-link v-if="!isLoggedIn" to="/login" class="nav-item nav-link">Login</router-link>
+              <router-link v-if="!isLoggedIn"  to="/register" class="nav-item nav-link">Register</router-link>
+                <a v-if="isLoggedIn" to="/logout" class="nav-link" @click.prevent="logoutUser">Logout</a> 
+              <!-- <router-link v-if="isLoggedIn"  to="" @click.prevent="logoutUser" class="nav-item nav-link">Logout</router-link> -->
             </div>
           </div>
        </nav> 
       </div>
     </div>
 </template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex';
+export default {
+  computed: {
+    ...mapGetters(["isLoggedIn"])
+  },
+   methods: {
+    ...mapActions(["logout"]),
+    logoutUser() {
+      this.logout();
+    }
+  }
+};
+</script>
