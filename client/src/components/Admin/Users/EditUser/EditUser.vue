@@ -14,6 +14,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default {
   name: "EditUser",
   props: {},
@@ -26,6 +28,14 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters({role : 'role'})
+  },
+  created() {
+      if(this.role === 'user' || this.role === null){
+        this.$router.push('../../../');
+    }
+  },
   methods: {
     onSubmit: function (e) {
       e.preventDefault();
@@ -34,23 +44,18 @@ export default {
       const password = e.target[1].value;
       const credits = e.target[2].value;
 
-      fetch(`http://localhost:5000/users/${this.user._id}`, {
-        method: "PUT",
-        body: JSON.stringify({ email, password, credits }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then(() => this.$router.push("/admin/users"))
+      axios.put(`http://localhost:5000/users/${this.user._id}`, {
+        email, password, credits
+      }).then(() => this.$router.push("/admin/users"))
         .catch((err) => console.log(err));
     },
   },
-  created() {
+  mounted() {
     const id = this.$route.params.id;
-
-    fetch(`http://localhost:5000/users/${id}`)
-      .then((response) => response.json())
-      .then((user) => this.user = user);
+    axios.get(`http://localhost:5000/users/${id}`).then(response => this.user = response.data);
+    // fetch(`http://localhost:5000/users/${id}`)
+    //   .then((response) => response.json())
+    //   .then((user) => this.user = user);
   },
   components: {},
 };

@@ -5,6 +5,9 @@ const router = express.Router();
 
 // import { getBooks, getBook, createBook, editBook, deleteBook } from "../controllers/books.js";
 const booksController = require('../controllers/books');
+const userAuth = require('../controllers/users').userAuth;
+const checkRole = require('../controllers/users').checkRole;
+
 
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,14 +20,25 @@ const fileStorage = multer.diskStorage({
 
 const upload = multer({ dest: 'images', storage: fileStorage })
 
-router.get("/", booksController.getBooks);
+router.get("/client", booksController.getBooks);
 
-router.get("/:id", booksController.getBook);
+router.get("/",
+    userAuth,
+    checkRole(["admin"]),
+    booksController.getBooks);
+
+router.get("/:id",
+    userAuth,
+    checkRole(["admin"]),
+    booksController.getBook);
 
 router.post("/", upload.single('image'), booksController.createBook);
 
 router.put("/:id", upload.single('image'), booksController.editBook);
 
-router.delete("/:id", booksController.deleteBook);
+router.delete("/:id",
+    userAuth,
+    checkRole(["admin"]),
+    booksController.deleteBook);
 
 module.exports = router;

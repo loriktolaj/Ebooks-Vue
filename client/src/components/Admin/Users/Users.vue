@@ -1,5 +1,5 @@
 <template>
-  <div class="center">
+  <div  class="center">
     <router-link to="/admin/users/createuser" class="button"
       >Create a User</router-link
     >
@@ -60,21 +60,28 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default {
   name: "Users",
   props: {},
   components: {},
-  data: function () {
-    return {
-      users: [],
-    };
+  computed: {
+    ...mapGetters({role : 'role'})
   },
   created() {
-        fetch("http://localhost:5000/users")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => this.users = data);
+      if(this.role === 'user' || this.role === null){
+        this.$router.push('../');
+    }
+  },
+  data: function () {
+    return {
+      users: []
+    };
+  },
+  mounted() {
+    axios.get("http://localhost:5000/users")
+      .then(response => (this.users = response.data))
   },
 };
 </script>

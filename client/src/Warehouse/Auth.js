@@ -4,14 +4,17 @@ import router from '../router';
 const state = {
     token: localStorage.getItem('token') || '',
     user: {},
+    role: 'user',
     status: '',
     error: null
 };
 
 const getters = {
     isLoggedIn: state => !!state.token,
+    token: state => state.token,
     authState: state => state.status,
     user: state => state.user,
+    role: state => state.user.role || 'user',
     error: state => state.error
 };
 

@@ -16,6 +16,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default {
   name: "CreateUser",
   props: {},
@@ -23,6 +25,14 @@ export default {
     return {
       username: "",
     };
+  },
+   computed: {
+    ...mapGetters({role : 'role'})
+  },
+  created() {
+      if(this.role === 'user'){
+        this.$router.push('../../');
+    }
   },
   methods: {
     onSubmit: function (e) {
@@ -32,16 +42,11 @@ export default {
       // const password = e.target[2].value;
       const age = e.target[3].value;
       const credits = e.target[4].value;
-      console.log(name, email, email, age, credits);
-      
-      fetch('http://localhost:5000/users', {
-        method: 'POST',
-        body: JSON.stringify({email, password: 'test', credits}),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      axios.post('http://localhost:5000/users', {
+        name, email, age, credits
+      }).then(() => {
+        this.$router.push('/admin/users');
       })
-      .then(() => this.$router.push('/admin/users'));
     },
   },
   components: {},

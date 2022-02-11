@@ -1,29 +1,45 @@
 // import express from 'express';
 const express = require('express');
 const passport = require('passport');
-
 const router = express.Router();
-
 const usersControllers = require('../controllers/users');
 
-router.get('/', usersControllers.getUsers);
 
-// Return User's data
-router.get('/profile', passport.authenticate('jwt', {
-    session: false
-}), (req, res) => {
+router.get('/', 
+    usersControllers.userAuth,
+    usersControllers.checkRole(["admin"]),
+    usersControllers.getUsers
+);
+
+router.get("/profile", usersControllers.userAuth, async (req, res) => {
     return res.json({
         user: req.user
     });
-});
+  });
 
-router.get('/:id', usersControllers.getUser);
+router.get('/:id', 
+    usersControllers.userAuth,
+    usersControllers.checkRole(["admin"]),
+    usersControllers.getUser
+);
 
-router.post('/', usersControllers.postAddUser);
+router.post('/',
+    usersControllers.userAuth,
+    usersControllers.checkRole(["admin"]),
+    usersControllers.postAddUser
+);
 
-router.put("/:id", usersControllers.editUser);
+router.put("/:id",
+    usersControllers.userAuth,
+    usersControllers.checkRole(["admin"]),
+    usersControllers.editUser
+);
 
-router.delete("/:id", usersControllers.deleteUser);
+router.delete("/:id",
+    usersControllers.userAuth,
+    usersControllers.checkRole(["admin"]), 
+    usersControllers.deleteUser
+);
 
 router.post('/register', usersControllers.register);
 

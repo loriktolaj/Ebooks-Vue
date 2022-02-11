@@ -10,6 +10,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default {
   name: "DeleteUser",
   props: {},
@@ -18,14 +20,25 @@ export default {
       id: null,
     };
   },
+  computed: {
+    ...mapGetters({role : 'role'})
+  },
+  created() {
+      if(this.role === 'user'){
+        this.$router.push('../../../');
+    }
+  },
   methods: {
     onConfirm: function () {
       const id = this.$route.params.id;
       
-      fetch(`http://localhost:5000/users/${id}`, {
-        method: 'DELETE'
-      })
-        .then(() => this.$router.push('/admin/users'));
+      axios.delete(`http://localhost:5000/users/${id}`)
+      .then(() => this.$router.push('/admin/users'));
+
+      // fetch(`http://localhost:5000/users/${id}`, {
+      //   method: 'DELETE'
+      // })
+      //   .then(() => this.$router.push('/admin/users'));
     },
     onCancel: function () {
       this.$router.push('/admin/users');

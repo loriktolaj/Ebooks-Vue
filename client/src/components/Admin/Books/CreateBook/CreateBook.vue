@@ -16,6 +16,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+// import axios from 'axios';
 export default {
   name: "CreateBook",
   props: {},
@@ -24,6 +26,14 @@ export default {
       username: "",
       url: null
     };
+  },
+   computed: {
+    ...mapGetters({role : 'role'})
+  },
+  created() {
+      if(this.role === 'user'){
+        this.$router.push('../../');
+    }
   },
   methods: {
     onSubmit: function (e) {
@@ -35,13 +45,18 @@ export default {
       const image = fileField.files[0];
       const credits = e.target[3].value;
 
-      console.log(title, author, image, credits);
+      // console.log(title, author, image, credits);
 
       const formData = new FormData();
       formData.append('title', title);
       formData.append('author', author);
       formData.append('image', image);
       formData.append('credits', credits);
+      // console.log(formData);
+      // axios.post('http://localhost:5000/books', {
+      //   data: formData
+      // }).then(() => this.$router.push('/admin/books'))
+      // .catch(err => console.log(err));
 
       fetch('http://localhost:5000/books', {
         method: 'POST',

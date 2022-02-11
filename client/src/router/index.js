@@ -53,57 +53,84 @@ const routes = [
     }
   },
   {
-    path: "/Profile",
+    path: "/profile",
     name: "Profile",
     component: Profile,
     meta:{
-      requiresGuest: false
+      requiresAuth: true
     }
   },
   {
     path: "/admin",
     name: "Dashboard",
     component: Dashboard,
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: "/admin/books",
     name: "AdminBooks",
     component: AdminBooks,
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: "/admin/books/createbook",
     name: "CreateBook",
     component: CreateBook,
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: "/admin/books/editbook/:id",
     name: "EditBook",
     component: EditBook,
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: "/admin/books/deletebook/:id",
     name: "DeleteBook",
     component: DeleteBook,
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: "/admin/users",
     name: "Users",
-    component: Users
+    component: Users,
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: "/admin/users/createuser",
     name: "CreateUser",
     component: CreateUser,
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: "/admin/users/edituser/:id",
     name: "EditUser",
     component: EditUser,
+    meta: {
+      requiresAuth: true
+      }
   },
   {
     path: "/admin/users/deleteuser/:id",
     name: "DeleteUser",
     component: DeleteUser,
+    meta: {
+      requiresAuth: true
+      }
   },
 ];
 
@@ -111,22 +138,22 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) =>{
-  if(to.matched.some(record => record.meta.requresAuth)){
-    if(!store.getters.isLoggedIn){
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.isLoggedIn) {
       next('/login');
-    }else {
+    } else{
       next();
     }
-  } else if(to.matched.some(record => record.meta.requiresGuest)){
-    if(store.getters.isLoggedIn){
+  } else if (to.matched.some(record => record.meta.requiresGuest)) {
+    if (store.getters.isLoggedIn) {
       next('/profile');
-    }else {
+    } else {
       next();
     }
   } else {
     next();
   }
-})
+});
 
 export default router;

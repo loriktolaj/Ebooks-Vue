@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// import passport from 'passport';
+const passport = require('passport');
 const User = require('../models/User');
 
 exports.getUsers = async (req, res) => {
@@ -118,7 +118,8 @@ exports.register = async (req, res) => {
     let newUser = new User({
         username,
         email,
-        password
+        password,
+        role
     });
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -149,7 +150,8 @@ exports.login = async (req, res) => {
                 const payload ={
                     _id: user._id,
                     username: user.username,
-                    email: user.email
+                    email: user.email,
+                    role: user.role
                 }
                 jwt.sign(payload, process.env.KEY, { 
                     expiresIn: 604800
@@ -170,3 +172,18 @@ exports.login = async (req, res) => {
         });
     });
 }
+
+exports.userAuth = passport.authenticate("jwt", { session: false });
+
+// exports.userAuth = passport.authenticate("jwt", {
+//     session: false 
+// }), (req,res) => {
+//     return res.json({
+//         user: req.user
+//     });
+// };
+
+exports.checkRole = roles => (req, res, next) =>
+  !roles.includes(req.user.role)
+    ? res.status(401).json("Unauthorized")
+    : next();

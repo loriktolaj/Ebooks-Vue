@@ -17,6 +17,9 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+// import axios from 'axios';
+
 export default {
   name: "EditBook",
   props: {},
@@ -30,6 +33,14 @@ export default {
       },
       url: null
     };
+  },
+    computed: {
+    ...mapGetters({role : 'role'})
+  },
+  created() {
+      if(this.role === 'user' || this.role === null){
+        this.$router.push('../../../');
+    }
   },
   methods: {
     onSubmit: function (e) {
@@ -61,7 +72,7 @@ export default {
       URL.revokeObjectURL(file);
     }
   },
-  created() {
+  mounted() {
     const id = this.$route.params.id;
 
     fetch(`http://localhost:5000/books/${id}`)

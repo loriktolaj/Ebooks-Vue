@@ -9,6 +9,11 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    role: {
+        type: String,
+        default: "user",
+        enum: ["user", "admin", "superadmin"]
+      },
     createdAt: {
         type: Date,
         default: new Date()

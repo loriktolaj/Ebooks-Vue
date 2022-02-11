@@ -13,7 +13,8 @@
 @import "Dashboard.css";
 </style>
 <script>
-
+import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default {
   name: "Dashboard",
   props: {},
@@ -23,15 +24,20 @@ export default {
       totalBooks: 0
     };
   },
-  created() {
-    fetch("http://localhost:5000/dashboard")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-         this.totalUsers = data.totalUsers;
-         this.totalBooks = data.totalBooks;
-      });
+   computed: {
+    ...mapGetters({role : 'role'})
   },
+  created() {
+      if(this.role === 'user'){
+        this.$router.push('../');
+    }
+  },
+   mounted() {
+    axios.get("http://localhost:5000/dashboard")
+      .then(response => {
+        this.totalUsers = response.data.totalUsers;
+         this.totalBooks = response.data.totalBooks;
+      })
+  }
 };
 </script>

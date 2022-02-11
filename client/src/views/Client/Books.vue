@@ -26,7 +26,7 @@ export default {
         };
     }, 
     created() {
-        fetch("http://localhost:5000/books")
+        fetch("http://localhost:5000/books/client")
         .then((response) => {
             return response.json();
         })

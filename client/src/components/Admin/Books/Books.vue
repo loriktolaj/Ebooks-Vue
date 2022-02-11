@@ -37,6 +37,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+import axios from 'axios';
 export default {
   name: "Books",
   props: {},
@@ -46,12 +48,17 @@ export default {
       books: [],
     };
   },
+   computed: {
+    ...mapGetters({role : 'role'})
+  },
   created() {
-    fetch("http://localhost:5000/books")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => this.books = data);
+      if(this.role === 'user' || this.role === null){
+        this.$router.push('../');
+    }
+  },
+  mounted() {
+     axios.get("http://localhost:5000/books")
+      .then(response => (this.books = response.data));
   },
 };
 </script>
