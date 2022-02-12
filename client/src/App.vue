@@ -3,22 +3,27 @@
     <div id="nav">
       <Navbar />
     </div>
+    <!-- <Header /> -->
     <Errors v-if="error" :msg="error" />
     <router-view />
-    
+      <Footer />
   </div>
 </template>
 
 <script> 
 import { mapGetters } from "vuex";
 import Navbar from "@/views/Client/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+// import Header from "@/components/Header.vue";
 // import Navbar from "@/views/Admin/Navbar.vue";
 import Errors from  "@/components/Errors.vue";
 export default {
   name: "App",
   components: {
     Navbar,
-    Errors
+    // Header,
+    Errors,
+    Footer
   },
   computed: {
     ...mapGetters(['error'])
@@ -36,12 +41,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: #f5f5f5;
 }
 
 .navbar-nav {
   left: 30px;
 }
-
 #nav {
   padding: 0px;
 }

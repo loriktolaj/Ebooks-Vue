@@ -1,11 +1,11 @@
 <template>
-    <div class="noBooksAlert" v-if="books.length === 0">
+    <div  class="noBooksAlert" v-if="books.length === 0">
         <h1>No books</h1>
     </div>
     <div class="container" v-else>
         <router-link v-bind:to="'/books/info/' + book._id" :key="book.id" v-for="book in books"  class="bookCard">
             <div class="cardInfo">
-                <div class="image"></div>
+                <div class="image"><img v-bind:src="'http://localhost:5000/images/' + book.image"/></div>
                 <div class="title">{{book.title}}</div>
                 <div class="author">{{book.author}}</div>
                 <div class="price">{{book.credits}}$</div>
@@ -17,6 +17,7 @@
 
 <script>
 export default {
+    el: '#books',
     name: "Books",
     props: {},
     components: {},
@@ -34,7 +35,6 @@ export default {
     },
 }
 </script>
-
 <style scoped>
     .noBooksAlert{
         width: 300px;
@@ -50,15 +50,21 @@ export default {
     .container {
         display: flex;
         margin-top: 30px;
+        margin-bottom: 30px;
+        width: 100%;
+        height: 100%;
+        flex-wrap: wrap;
     }
     .bookCard{
-        width: 250px;
-        height: 350px;
+        width: 280px;
+        height: 500px;
+        background: white;
         display: flex;
-        margin: 15px;
-        border: 1px solid black;
+        margin: 10px 20px;
+        border: 1px solid #aaaaaa;
         justify-content: center;
         text-decoration: none;
+  
     }
     .bookCard:hover {
         transition: 500ms;
@@ -73,9 +79,12 @@ export default {
     .title {
         font-size: 30px;
     }
-    .image {
+    .price{
+        font-weight:bold ;
+        color: darkslategray;
+    }
+    .image img {
         width: 200px;
-        height: 200px;
-        background-color: burlywood;
+        height: 300px;
     }
 </style>

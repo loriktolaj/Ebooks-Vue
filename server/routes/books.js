@@ -27,10 +27,7 @@ router.get("/",
     checkRole(["admin"]),
     booksController.getBooks);
 
-router.get("/:id",
-    userAuth,
-    checkRole(["admin"]),
-    booksController.getBook);
+router.get("/:id", booksController.getBook);
 
 router.post("/", upload.single('image'), booksController.createBook);
 

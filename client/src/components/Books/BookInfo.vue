@@ -2,7 +2,7 @@
         <div class="bookCard">
             <div class="title">{{book.title}}</div>
             <div class="cardInfo">
-                <div class="image"></div>
+                <div class="image"><img v-bind:src="'http://localhost:5000/images/' + book.image"/></div>
                 <div class="author">{{book.author}}</div>
                 <div class="price">{{book.credits}}$</div>
             </div>
@@ -64,11 +64,9 @@ export default {
         font-size: 30px;
         color: black;
     }
-    .image {
-        margin: 10px 50px 10px 10px;
+      .image img {
         width: 300px;
-        height: 300px;
-        background-color: burlywood;
+        height: 500px;
     }
     .author{
         margin: 30px;
