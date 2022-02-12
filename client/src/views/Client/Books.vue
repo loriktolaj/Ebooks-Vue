@@ -64,7 +64,8 @@ export default {
         border: 1px solid #aaaaaa;
         justify-content: center;
         text-decoration: none;
-  
+        box-shadow: 10px 10px 30px 0px #4d4d4d;
+        /* box-shadow: 5px 5px 30px 0px #4d4d4d; */
     }
     .bookCard:hover {
         transition: 500ms;
