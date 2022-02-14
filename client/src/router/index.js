@@ -1,11 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
+//Client
 import Home from "@/components/Home/Home.vue";
 import Books from "@/views/Client/Books.vue";
 import Login from "@/components/Login/Login.vue";
 import BookInfo from "@/components/Books/BookInfo.vue";
 import Register from "@/components/Register/Register.vue";
+import CostumerCare from "@/components/CostumerCare/CostumerCare.vue";
+import About from "@/components/About/About.vue";
 
+//Admin
 import Dashboard from "@/components/Admin/Dashboard/Dashboard.vue";
 import AdminBooks from "@/components/Admin/Books/Books.vue";
 import Users from "@/components/Admin/Users/Users.vue";
@@ -35,6 +40,16 @@ const routes = [
     path: "/Books/info/:id",
     name: "BookInfo",
     component: BookInfo,
+  },
+  {
+    path: "/costumercare",
+    name: "CostumerCare",
+    component: CostumerCare
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: About
   },
   {
     path: "/login",

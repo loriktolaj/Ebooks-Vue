@@ -3,7 +3,7 @@
     <div id="nav">
       <Navbar />
     </div>
-    <!-- <Header /> -->
+    <Header />
     <Errors v-if="error" :msg="error" />
     <router-view />
       <Footer />
@@ -14,14 +14,14 @@
 import { mapGetters } from "vuex";
 import Navbar from "@/views/Client/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-// import Header from "@/components/Header.vue";
+import Header from "@/components/Header.vue";
 // import Navbar from "@/views/Admin/Navbar.vue";
 import Errors from  "@/components/Errors.vue";
 export default {
   name: "App",
   components: {
     Navbar,
-    // Header,
+    Header,
     Errors,
     Footer
   },

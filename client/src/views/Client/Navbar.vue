@@ -12,6 +12,8 @@
               <router-link to="/books" class="nav-item nav-link">Books</router-link>
               <router-link v-if="!isLoggedIn" to="/login" class="nav-item nav-link">Login</router-link>
               <router-link v-if="!isLoggedIn"  to="/register" class="nav-item nav-link">Register</router-link>
+              <router-link to="/costumercare" class="nav-item nav-link">Costumer Care</router-link>
+              <router-link to="/about" class="nav-item nav-link">About</router-link>
                 <a v-if="isLoggedIn" to="/logout" class="nav-link" @click.prevent="logoutUser">Logout</a> 
               <!-- <router-link v-if="isLoggedIn"  to="" @click.prevent="logoutUser" class="nav-item nav-link">Logout</router-link> -->
             </div>
