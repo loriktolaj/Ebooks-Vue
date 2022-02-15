@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <section>
+ <div>
+    <section>
 	<div class="wrapper">
 	 <h1 class="gamma lato thin uppercase ls-xlarge">
 		 We Are<br>
@@ -9,12 +9,26 @@
 		</h1>
 	 </div>
 	</section>
-  </div>
+    <!-- <div class="py-1 bg-light">
+        <div class="container px-5 my-5">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-5 col-xl-7">
+                    <div class="text-center">
+                        <div class="fs-4 mb-4 fst-arial"><i>“And above all, watch with glittering eyes the whole world around you because the greatest secrets are always hidden in the most unlikely places. Those who don't believe in magic will never find it...”</i> - <b>Roald Dahl</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+  </div> 
 </template>
 
 <script>
 export default {
-
+    name: "Header",
+    components: {
+        
+    }
 }
 </script>
 

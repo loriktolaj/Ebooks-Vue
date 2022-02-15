@@ -3,7 +3,7 @@
     <div id="nav">
       <Navbar />
     </div>
-    <Header />
+     <Header /> 
     <Errors v-if="error" :msg="error" />
     <router-view />
       <Footer />
