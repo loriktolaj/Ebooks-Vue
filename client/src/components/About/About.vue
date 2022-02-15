@@ -1,19 +1,20 @@
 <template>
   <div class="about">
         <div class="container text-center">
-		<br> <br>
-		<b><i><h2 class="thin">The best place to tell people why we're here</h2></i></b>
-		<p class="text-muted">
-			The difference between involvement and commitment is like an eggs-and-ham breakfast:<br> 
+			<br>
+			<b><i><h2 class="thin">The best place to tell people why we're here</h2></i></b>
+			<!-- <img src="https://www.svgrepo.com/show/3978/presenter-talking-about-people-on-a-screen.svg" alt=""/> -->
+			<p class="text-muted">
+			The difference between involvement and commitment is like an eggs-and-ham breakfast:<br>
 			the chicken was involved, the pig was committed.
-		</p>
-	</div>
+			</p>
+		</div>
     <div class="jumbotron top-space">
 		<div class="container">
-			<b><i><h3 class="text-center thin">~ What makes this place tick? ~</h3></i></b><br/><br/>
+			<b><i><h3 class="text-center thin">~ What makes this community tick? ~</h3></i></b><br/><br/>
 			<div class="row">
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa-thin fa-bus"></i>Company</h4></div>
+					<div class="h-caption"><h4>Company</h4></div>
 					<div class="h-body text-center">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur. Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam iusto assumenda hic reprehenderit?</p>
 					</div>
@@ -52,4 +53,5 @@
 </script>
 
 <style>
+	
 </style>

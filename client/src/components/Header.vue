@@ -32,8 +32,8 @@ export default {
 }
 </script>
 
-<style>
-    section{
+<style scoped>
+        section{
         height: 500px;
         padding: 3rem 0;
         position: relative;
@@ -57,7 +57,7 @@ export default {
     .gamma {
     font-size: 2rem; 
     margin-bottom: 0.825rem;
-    
+
     }
     .tera {
     font-size: 6.5rem; 
