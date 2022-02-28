@@ -62,7 +62,7 @@ export default {
         display: flex;
         margin: 10px 20px;
         border: 1px solid #aaaaaa;
-        justify-content: center;
+        justify-content: center;    
         text-decoration: none;
         box-shadow: 10px 10px 30px 0px #4d4d4d;
         /* box-shadow: 5px 5px 30px 0px #4d4d4d; */
@@ -79,10 +79,18 @@ export default {
     }
     .title {
         font-size: 30px;
+        padding: 0px 10px;
+        word-wrap: break-word;
     }
     .price{
         font-weight:bold ;
         color: darkslategray;
+    }
+    .image {
+      width: 280px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
     }
     .image img {
         width: 200px;
