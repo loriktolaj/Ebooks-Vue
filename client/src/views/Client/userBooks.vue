@@ -38,11 +38,6 @@ export default {
   },
   methods: {
     ...mapActions(["getProfile"]),
-    // getBooks: function () {
-    //     this.uId = this.user._id;
-     
-    //   console.log(this.uId);
-    // },
   },
   created() {
       this.getProfile();
@@ -50,7 +45,6 @@ export default {
        axios
         .get(`http://localhost:5000/users/getBooks/${uId}`)
         .then((response) => (this.books = response.data));
-    this.getBooks();
   },
 };
 </script>
