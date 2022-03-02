@@ -46,7 +46,6 @@ exports.editBook = async (req, res) => {
 
 exports.createBook = async (req, res) => {
     const body = req.body;
-    console.log(req.file, req.body);
     const newBook = new Book();
 
     newBook.title = body.title;
@@ -65,7 +64,6 @@ exports.createBook = async (req, res) => {
 
 exports.createBookContent = async (req, res) => {
     const body = req.body;
-    console.log(req.file, req.body);
     const newBook = new bookContent();
 
     newBook.title = body.title;
@@ -98,7 +96,6 @@ exports.deleteBook = async (req, res) => {
 exports.buyBook = async (req, res) => {
     try {
         const id = req.params.id;
-        console.log(id);
         const book = await Book.findById(id);
         const bookCreds = book.credits;
 
