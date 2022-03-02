@@ -180,8 +180,7 @@ exports.getUserBooks = async (req,res) => {
         const user = await User.findOne({_id: id});
         // const books = await Book.find();
         const books = await Book.find().where('_id').in(user.bookContent).exec();
-        res.status(200).json(books);
-        
+        return res.status(200).json(books);
     } catch(error) {
         res.status(404).json({message: error.message});
     }

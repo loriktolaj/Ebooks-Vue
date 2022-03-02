@@ -22,7 +22,7 @@ export default {
     components: {},
     data: function () {
         return {
-        books: [],
+        books: null,
         };
     }, 
     created() {

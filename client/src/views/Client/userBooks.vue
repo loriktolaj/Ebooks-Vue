@@ -41,10 +41,11 @@ export default {
   },
   created() {
       this.getProfile();
-        const uId = this.user._id;
-       axios
-        .get(`http://localhost:5000/users/getBooks/${uId}`)
-        .then((response) => (this.books = response.data));
+      const uId = this.user._id;
+      console.log(uId);
+      axios
+      .get(`http://localhost:5000/users/getBooks/${uId}`)
+      .then((response) => this.books = response.data);
   },
 };
 </script>

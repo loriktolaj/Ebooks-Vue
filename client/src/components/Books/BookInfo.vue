@@ -44,13 +44,15 @@ export default {
     ...mapActions(["getProfile"]),
     buy: function () {
       const bookId = this.$route.params.id;
+      console.log(this.user);
       const uId = this.user._id;
 
-      axios.get(`http://localhost:5000/books/creds/${bookId}/${uId}`);
+      axios.get(`http://localhost:5000/books/creds/${bookId}/${uId}`).catch(Err => console.log(Err))
        this.$router.push('../../userBooks');
     },
   },
   created() {
+    console.log('renderd');
     const id = this.$route.params.id;
     fetch(`http://localhost:5000/books/${id}`)
       .then((response) => {

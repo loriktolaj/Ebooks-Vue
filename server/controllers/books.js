@@ -98,6 +98,7 @@ exports.deleteBook = async (req, res) => {
 exports.buyBook = async (req, res) => {
     try {
         const id = req.params.id;
+        console.log(id);
         const book = await Book.findById(id);
         const bookCreds = book.credits;
 
@@ -108,7 +109,7 @@ exports.buyBook = async (req, res) => {
         let creditAfterPurchase = 0;
 
         if(bookCreds === 0 || userCreds < bookCreds){
-          res.status(400).json({
+          return res.status(400).json({
               message: "You don't have enough credits"
           })
         }else{
@@ -119,11 +120,11 @@ exports.buyBook = async (req, res) => {
             await user.save();
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "UserCreds: " + userCreds + " BookCreds: " + bookCreds + "  after "+ creditAfterPurchase
         })
         
     }catch(error){
-        res.status(404).json({message: error.message});
+        return res.status(404).json({message: error.message});
     }
 }

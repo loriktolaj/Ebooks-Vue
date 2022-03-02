@@ -34,8 +34,7 @@ const actions = {
                 localStorage.setItem('token', token);
                 // Set the axios defaults
                 axios.defaults.headers.common['Authorization'] = token;
-                console.log(user);
-                commit('auth_success', token, user);
+                commit('auth_success', {token, user});
             }
             return res;
         } catch (err) {
@@ -70,7 +69,7 @@ const actions = {
     async logout({
         commit
     }) {
-        await localStorage.removeItem('token');
+        localStorage.removeItem('token');
         commit('logout');
         delete axios.defaults.headers.common['Authorization'];
         router.push('/login');
@@ -83,7 +82,7 @@ const mutations = {
         state.error = null
         state.status = 'loading'
     },
-    auth_success(state, token, user) {
+    auth_success(state, { token, user}) {
         state.token = token
         state.user = user
         state.status = 'success'
