@@ -21,6 +21,7 @@ import CreateBook from "@/components/Admin/Books/CreateBook/CreateBook.vue";
 import EditBook from "@/components/Admin/Books/EditBook/EditBook.vue";
 import DeleteBook from "@/components/Admin/Books/DeleteBook/DeleteBook.vue";
 import Profile from "@/views/Client/Profile.vue";
+import userBooks from "@/views/Client/userBooks.vue";
 import store from '@/store';
 
 Vue.use(VueRouter);
@@ -71,6 +72,14 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+    meta:{
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/userBooks",
+    name: "userBooks",
+    component: userBooks,
     meta:{
       requiresAuth: true
     }

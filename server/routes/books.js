@@ -31,6 +31,10 @@ router.get("/:id", booksController.getBook);
 
 router.post("/", upload.single('image'), booksController.createBook);
 
+router.post("/bookcontent", booksController.createBookContent);
+
+router.get("/creds/:id/:userid", booksController.buyBook);
+
 router.put("/:id", upload.single('image'), booksController.editBook);
 
 router.delete("/:id",

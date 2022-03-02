@@ -14,6 +14,7 @@ const getters = {
     token: state => state.token,
     authState: state => state.status,
     user: state => state.user,
+    userId: state => state.user._id,
     role: state => state.user.role || 'user',
     error: state => state.error
 };

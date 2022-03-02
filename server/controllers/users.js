@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const Book = require('../models/Book');
 const User = require('../models/User');
 
 exports.getUsers = async (req, res) => {
@@ -119,7 +120,7 @@ exports.register = async (req, res) => {
         username,
         email,
         password,
-        role
+        role : 'user'
     });
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -172,6 +173,20 @@ exports.login = async (req, res) => {
         });
     });
 }
+
+exports.getUserBooks = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const user = await User.findOne({_id: id});
+        // const books = await Book.find();
+        const books = await Book.find().where('_id').in(user.bookContent).exec();
+        res.status(200).json(books);
+        
+    } catch(error) {
+        res.status(404).json({message: error.message});
+    }
+}
+
 
 exports.userAuth = passport.authenticate("jwt", { session: false });
 

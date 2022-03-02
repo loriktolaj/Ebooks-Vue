@@ -1,5 +1,9 @@
 // import Book from "../models/Book.js";
 const Book = require('../models/Book');
+const User = require('../models/User');
+const bookContent = require('../models/BookContent');
+const { JsonWebTokenError } = require('jsonwebtoken');
+const { json } = require('body-parser');
 
 exports.getBooks = async (req, res) => {
     try {
@@ -49,7 +53,7 @@ exports.createBook = async (req, res) => {
     newBook.author = body.author;
     newBook.image = req.file.originalname;
     newBook.credits = body.credits;
-
+    // newBook.bookContent = body.contentId;
     try {
         await newBook.save();
 
@@ -59,6 +63,27 @@ exports.createBook = async (req, res) => {
     }
 }
 
+exports.createBookContent = async (req, res) => {
+    const body = req.body;
+    console.log(req.file, req.body);
+    const newBook = new bookContent();
+
+    newBook.title = body.title;
+    newBook.author = body.author;
+    newBook.content = body.content;
+    // newBook.bookContent.title = newBook.title;
+    // newBook.bookContent.author = newBook.author;
+    // newBook.bookContent.content = body.content;
+    try {
+        await newBook.save();
+
+        res.status(201).json(newBook);
+    } catch(error) {
+        res.status(409).json({message: error.message});
+    }
+}
+
+
 exports.deleteBook = async (req, res) => {
     try {
         const id = req.params.id;
@@ -66,6 +91,39 @@ exports.deleteBook = async (req, res) => {
 
         res.status(200).json({msg: 'success'});
     } catch(error) {
+        res.status(404).json({message: error.message});
+    }
+}
+
+exports.buyBook = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const book = await Book.findById(id);
+        const bookCreds = book.credits;
+
+        const userId = req.params.userid;
+        const user = await User.findById(userId);
+        const userCreds = user.credits;
+        
+        let creditAfterPurchase = 0;
+
+        if(bookCreds === 0 || userCreds < bookCreds){
+          res.status(400).json({
+              message: "You don't have enough credits"
+          })
+        }else{
+            creditAfterPurchase = userCreds - bookCreds;
+            user.credits = creditAfterPurchase;
+            user.bookContent.push(book);
+            
+            await user.save();
+        }
+
+        res.status(200).json({
+            message: "UserCreds: " + userCreds + " BookCreds: " + bookCreds + "  after "+ creditAfterPurchase
+        })
+        
+    }catch(error){
         res.status(404).json({message: error.message});
     }
 }

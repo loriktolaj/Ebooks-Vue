@@ -17,7 +17,11 @@ const userSchema = mongoose.Schema({
     createdAt: {
         type: Date,
         default: new Date()
-    }
+    },
+    bookContent: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "book"
+    }]
 });
 
 const User = mongoose.model("User", userSchema);

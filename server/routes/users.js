@@ -45,6 +45,8 @@ router.post('/register', usersControllers.register);
 
 router.post('/login', usersControllers.login);
 
+router.get('/getBooks/:id', usersControllers.getUserBooks);
+
 
 
 module.exports = router;
