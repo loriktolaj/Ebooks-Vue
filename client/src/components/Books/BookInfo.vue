@@ -1,4 +1,5 @@
 <template>
+
   <div class="bookCard">
     <div class="title">{{ book.title }}</div>
     <div class="cardInfo">
@@ -21,6 +22,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import axios from "axios";
+
 export default {
   name: "BookInfo",
   props: {},

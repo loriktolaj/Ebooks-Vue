@@ -34,6 +34,7 @@ const actions = {
                 localStorage.setItem('token', token);
                 // Set the axios defaults
                 axios.defaults.headers.common['Authorization'] = token;
+                console.log(user);
                 commit('auth_success', token, user);
             }
             return res;
@@ -86,6 +87,7 @@ const mutations = {
         state.token = token
         state.user = user
         state.status = 'success'
+        state.role = user.role
         state.error = null
     },
     auth_error(state, err) {

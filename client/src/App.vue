@@ -2,8 +2,6 @@
   <div id="app">
     <div id="nav">
       <Navbar />
-      
-      <AdminNavbar v-if="role === 'admin'"  />
     </div>
      <!-- <Header />  -->
     <Errors v-if="error" :msg="error" />
@@ -17,7 +15,7 @@ import { mapGetters } from "vuex";
 import Navbar from "@/views/Client/Navbar.vue";
 // import Footer from "@/components/Footer.vue";
 // import Header from "@/components/Header.vue";
-import AdminNavbar from "@/views/Admin/Navbar.vue";
+// import AdminNavbar from "@/views/Admin/Navbar.vue";
 import Errors from  "@/components/Errors.vue";
 export default {
   name: "App",
@@ -25,7 +23,7 @@ export default {
     Navbar,
     // Header,
     Errors,
-    AdminNavbar,
+    // AdminNavbar,
     // Footer
   },
   computed: {
