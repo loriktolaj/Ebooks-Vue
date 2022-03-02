@@ -1,5 +1,4 @@
 <template>
-
   <div class="bookCard">
     <div class="title">{{ book.title }}</div>
     <div class="cardInfo">
@@ -45,10 +44,13 @@ export default {
     buy: function () {
       const bookId = this.$route.params.id;
       const uId = this.user._id;
-
-      axios.get(`http://localhost:5000/books/creds/${bookId}/${uId}`).then(() => {
-       this.$router.push('../../userBooks');
+      if(this.user.credits <= 0){
+        alert("Not enough credits");
+      }else{
+        axios.post(`http://localhost:5000/books/creds/${bookId}/${uId}`).then(() => {
+              this.$router.push('../../userBooks');
       })
+    }
     },
   },
   created() {

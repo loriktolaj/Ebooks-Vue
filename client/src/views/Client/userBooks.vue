@@ -1,10 +1,13 @@
 <template>
   <div class="noBooksAlert" v-if="books.length === 0">
     <h1>No books</h1>
+
   </div>
-  <div class="container" v-else>
+  <div v-else>
+    <Header />
+    <div class="container" >
     <router-link
-      v-bind:to="'/books/info/' + book._id"
+       v-bind:to="'/books/info/' + book._id"
       :key="book.id"
       v-for="book in books"
       class="bookCard"
@@ -19,15 +22,23 @@
       </div>
     </router-link>
   </div>
+  <Footer />
+  </div>
+  
 </template>
 
 <script>
+import Header from '../../components/Header.vue';
+import Footer from '../../components/Footer.vue';
 import { mapActions, mapGetters } from "vuex";
 import axios from "axios";
 export default {
   name: "Books",
   props: {},
-  components: {},
+  components: {
+            Header,
+            Footer
+        },
   data: function () {
     return {
       books: [],
