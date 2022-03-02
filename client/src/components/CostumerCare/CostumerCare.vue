@@ -1,5 +1,6 @@
 <template>
     <div class="costumer">
+        <Header/>
         <div class="card">
             <body>
                 <div class="row1-container">
@@ -29,14 +30,19 @@
                 </div>
             </body>
         </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
+import Header from '../Header.vue';
+import Footer from '../Footer.vue';
+
     export default{
         name: "CostumerCare",
-        data(){
-            
+        components: {
+            Header,
+            Footer
         }
     }
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+	  <Header/>
         <div class="container text-center">
 			<br>
 			<b><i><h2 class="thin">The best place to tell people why we're here</h2></i></b>
@@ -40,14 +41,19 @@
 			</div> 
 		</div>
 	</div>
+	<Footer/>
   </div>
 </template>
 
 <script>
+import Header from '../Header.vue';
+import Footer from '../Footer.vue';
+
     export default{
         name: "About",
-        data(){
-
+        components: {
+			Header,
+			Footer
         }
     }
 </script>
