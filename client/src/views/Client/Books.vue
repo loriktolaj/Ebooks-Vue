@@ -113,4 +113,10 @@ export default {
   width: 200px;
   height: 300px;
 }
+
+@media screen and (max-width:1200px) {
+  .container{
+    justify-content: center;
+  }
+}
 </style>

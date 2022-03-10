@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
 section {
-  height: 500px;
+  height: 400px;
   padding: 3rem 0;
   position: relative;
   background-image: url(https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80);
