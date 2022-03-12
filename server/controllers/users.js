@@ -4,6 +4,7 @@ const passport = require('passport');
 const Book = require('../models/Book');
 const User = require('../models/User');
 
+
 exports.getUsers = async (req, res) => {
     try {
         const users = await User.find();
@@ -24,6 +25,7 @@ exports.getUser = async (req, res) => {
         res.status(404).json({message: error.message});
     }
 }
+
 
 exports.editUser = async (req, res) => {
     try {
@@ -87,6 +89,7 @@ exports.deleteUser = async (req, res) => {
         res.status(409).json({message: error.message});
     }
 }
+
 
 // User Register
 

@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+	  <link rel="stylesheet" href="css/bootstrap.min.css"/> 
 	  <Header/>
         <div class="container text-center">
 			<br>
@@ -7,7 +8,7 @@
 			<!-- <img src="https://www.svgrepo.com/show/3978/presenter-talking-about-people-on-a-screen.svg" alt=""/> -->
 			<p class="text-muted">
 			The difference between involvement and commitment is like an eggs-and-ham breakfast:<br>
-			the chicken was involved, the pig was committed.
+			the chicken was <b>involved</b>, the pig was <b><i>commited.</i></b>
 			</p>
 		</div>
     <div class="jumbotron top-space">
@@ -17,25 +18,25 @@
 				<div class="col-md-3 col-sm-6 highlight">
 					<div class="h-caption"><h4>Company</h4></div>
 					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur. Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam iusto assumenda hic reprehenderit?</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur. Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam iusto assumenda hic reprehenderit!</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>Project</h4></div>
+					<div class="h-caption"><h4>Project</h4></div>
 					<div class="h-body text-center">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, commodi, sequi quis ad fugit omnis cumque a libero error nesciunt molestiae repellat quos perferendis numquam quibusdam rerum repellendus laboriosam reprehenderit! </p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>Legacy</h4></div>
+					<div class="h-caption"><h4>Legacy</h4></div>
 					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae, perferendis, perspiciatis nobis voluptate quod illum soluta minima ipsam ratione quia numquam eveniet eum reprehenderit dolorem dicta nesciunt corporis?</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae, perferendis, perspiciatis nobis voluptate quod illum soluta minima ipsam ratione quia numquam eveniet eum reprehenderit dolorem dicta nesciunt corporis!</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>Revenue</h4></div>
+					<div class="h-caption"><h4>Revenue</h4></div>
 					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, excepturi, maiores, dolorem quasi reprehenderit illo accusamus nulla minima repudiandae quas ducimus reiciendis odio sequi atque temporibus facere corporis eos expedita? </p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, excepturi, maiores, dolorem quasi reprehenderit illo accusamus nulla minima repudiandae quas ducimus reiciendis odio sequi atque temporibus facere corporis eos expedita!</p>
 					</div>
 				</div>
 			</div> 

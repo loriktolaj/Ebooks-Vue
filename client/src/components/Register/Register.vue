@@ -4,7 +4,7 @@
             <div class="text">Please enter your account details to register</div><br/>
             <form @submit.prevent="registerUser" action="#" className="form" >
                 <div class="data">
-                    <label for="username">Username</label>
+                    <label for="username">Full name</label>
                     <input id="username" type="text" placeholder="Username" name="username" v-model="username"/> 
                 </div>
                 <div class="data">
@@ -35,40 +35,40 @@
     </div>
 </template>
 
-<style lang="css" scoped>
+<style scoped>
   @import 'Register.css';
 </style>
 
 
 <script>
-import { mapActions } from "vuex";
- export default {
-    name: "Register",
-    props: {
-    },
-    data(){
-        return {
-            username: "",
-            password: "",
-            confirm_password: "",
-            email:""
-        }
-    },
-    methods: {
-        ...mapActions(['register']),
-        registerUser(){
-            let user = {
-                username: this.username,
-                password: this.password,
-                confirm_password: this.confirm_password,
-                email: this.email
-            }
-            this.register(user).then(res => {
-                if(res.data.success){
-                    this.$router.push('login');
+    import { mapActions } from "vuex";
+        export default {
+            name: "Register",
+            props: {
+            },
+            data(){
+                return {
+                    username: "",
+                    password: "",
+                    confirm_password: "",
+                    email:""
                 }
-            });
-        }
-    }
- };
+            },
+            methods: {
+                ...mapActions(['register']),
+                registerUser(){
+                    let user = {
+                        username: this.username,
+                        password: this.password,
+                        confirm_password: this.confirm_password,
+                        email: this.email
+                    }
+                    this.register(user).then(res => {
+                        if(res.data.success){
+                            this.$router.push('login');
+                        }
+                    });
+                }
+            }
+        };
 </script>

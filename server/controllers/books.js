@@ -5,6 +5,7 @@ const bookContent = require('../models/BookContent');
 const { JsonWebTokenError } = require('jsonwebtoken');
 const { json } = require('body-parser');
 
+
 exports.getBooks = async (req, res) => {
     try {
         const books = await Book.find();
@@ -26,6 +27,8 @@ exports.getBook = async (req, res) => {
     }
 }
 
+
+
 exports.editBook = async (req, res) => {
     try {
         const id = req.params.id;
@@ -44,6 +47,7 @@ exports.editBook = async (req, res) => {
     }
 }
 
+
 exports.createBook = async (req, res) => {
     const body = req.body;
     const newBook = new Book();
@@ -61,6 +65,7 @@ exports.createBook = async (req, res) => {
         res.status(409).json({message: error.message});
     }
 }
+
 
 exports.createBookContent = async (req, res) => {
     const body = req.body;
@@ -92,6 +97,9 @@ exports.deleteBook = async (req, res) => {
         res.status(404).json({message: error.message});
     }
 }
+
+
+
 
 exports.buyBook = async (req, res) => {
     try {
