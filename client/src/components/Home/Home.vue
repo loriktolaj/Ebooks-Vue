@@ -40,6 +40,7 @@
 </style>
 
 <script>
+//test import
 //import Header from '../Header.vue';
 import Footer from '../Footer.vue';
 
