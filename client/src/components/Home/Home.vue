@@ -7,7 +7,7 @@
                     <div class="col-lg-5 col-xl-7 col-xxl-6">
                         <div class="my-5 text-center text-xl-start">
                             <h1 class="display-5 fw-bolder text-white mb-2">E-Books</h1>
-                            <p class="lead fw-normal text-white-50 mb-4">Board in and let your imagination reach imppecable heights meant to open new doors & opportunities to challenge your lives!</p>
+                            <p class="lead fw-normal text-white-50 mb-4">Board in and let your imagination reach imppecable heights meant to open new doors and opportunities to challenge your lives!</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                 <a class="btn btn-primary btn-lg px-4 me-sm-1" href="/#/register">Get Started</a>
                                 <a class="btn btn-outline-light btn-lg px-4" href="/#/books">Learn More</a>
