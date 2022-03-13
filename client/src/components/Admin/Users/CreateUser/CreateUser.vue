@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <form v-on:submit="onSubmit">
-      <input type="text" name="name" placeholder="Name" />
+      <input type="text" name="username" placeholder="Name" />
       <input type="email" name="email" placeholder="Email" />
       <input type="password" name="password" placeholder="password" />
       <input type="number" name="age" placeholder="Age" />
@@ -37,13 +37,13 @@ export default {
   methods: {
     onSubmit: function (e) {
       e.preventDefault();
-      const name = e.target[0].value;
+      const username = e.target[0].value;
       const email = e.target[1].value;
-      // const password = e.target[2].value;
+      const password = e.target[2].value;
       const age = e.target[3].value;
       const credits = e.target[4].value;
       axios.post('http://localhost:5000/users', {
-        name, email, age, credits
+        username, password, email, age, credits
       }).then(() => {
         this.$router.push('/admin/users');
       })

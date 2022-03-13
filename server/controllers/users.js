@@ -61,9 +61,8 @@ exports.postAddUser = async (req, res) => {
     const body = req.body;
     const newUser = new User();
 
-    newUser.name = body.name;
+    newUser.username = body.username;
     newUser.email = body.email;
-    newUser.age = body.age;
     newUser.credits = body.credits;
 
     try {
