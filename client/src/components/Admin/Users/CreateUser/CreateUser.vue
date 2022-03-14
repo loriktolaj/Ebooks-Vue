@@ -6,6 +6,10 @@
       <input type="password" name="password" placeholder="password" />
       <input type="number" name="age" placeholder="Age" />
       <input type="number" name="credits" placeholder="Credits" />
+      <select name="role" id="">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
       <button type="submit" class="btn btn-primary">Add</button>
     </form>
   </div>
@@ -42,8 +46,9 @@ export default {
       const password = e.target[2].value;
       const age = e.target[3].value;
       const credits = e.target[4].value;
+      const role = e.target[5].value;
       axios.post('http://localhost:5000/users', {
-        username, password, email, age, credits
+        username, password, email, age, credits, role
       }).then(() => {
         this.$router.push('/admin/users');
       })

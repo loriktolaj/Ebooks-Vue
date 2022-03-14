@@ -36,6 +36,7 @@ exports.editUser = async (req, res) => {
         user.email = body.email;
         user.password = body.password;
         user.credits = body.credits;
+        user.role = body.role;
 
         if(body.password.includes('$2a$') && body.password.length === 60) {
             user.password = body.password;
@@ -64,6 +65,7 @@ exports.postAddUser = async (req, res) => {
     newUser.username = body.username;
     newUser.email = body.email;
     newUser.credits = body.credits;
+    newUser.role = body.role;
 
     try {
         bcrypt.hash(req.body.password, 10, function(err, hash) {
